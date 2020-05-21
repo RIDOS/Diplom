@@ -36,7 +36,16 @@ Route::get('/study', function () {
 
 Route::namespace('Study')->prefix('study')->middleware(['auth', 'auth.study'])->name('study.')->group(function () {
     Route::resource('/profile','StudyController',
-        ['except' => ['show', 'create', 'store']]);
+    ['except' => ['show', 'create', 'store']]);
+
+    Route::resource('/student','StudentController',
+    ['except' => ['show', 'create', 'store']]);
+
+    Route::resource('/organizations','OrgController',
+    ['except' => ['show', 'create', 'store', 'edit', 'destroy', 'update']]);
+
+    Route::resource('/organizations/profile','OrgProController',
+    ['except' => ['index', 'create', 'store', 'edit', 'destroy', 'update']]);
 });
 
 
@@ -45,11 +54,11 @@ Route::get('/student', function () {
 })->middleware(['auth', 'auth.stud']);
 
 Route::namespace('Student')->prefix('student')->middleware(['auth', 'auth.stud'])->name('student.')->group(function () {
-  Route::resource('/profile','StudentController',
-  ['except' => ['show', 'create', 'store']]);
+    Route::resource('/profile','StudentController',
+    ['except' => ['show', 'create', 'store']]);
 
-  Route::resource('/vakansii','VakanssiiController',
-  ['except' => ['show', 'create', 'store']]);
+    Route::resource('/vakansii','VakanssiiController',
+    ['except' => ['show', 'create', 'store']]);
 });
 
 

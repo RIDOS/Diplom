@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Study;
 
+use App\organization;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class VakansiiController extends Controller
+class OrgController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,15 +15,17 @@ class VakansiiController extends Controller
      */
     public function index()
     {
-        return view('admin.vakansii.index');
+        return view('study.organization.index')->with('orgs', organization::all());
     }
 
-    public function create()
+
+    public function show(organization $organization)
     {
         //
     }
 
-    public function edit($id)
+
+    public function edit(organization $organization)
     {
         //
     }
@@ -31,10 +34,10 @@ class VakansiiController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\organization  $organization
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, organization $organization)
     {
         //
     }
@@ -42,10 +45,10 @@ class VakansiiController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\organization  $organization
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(organization $organization)
     {
         //
     }

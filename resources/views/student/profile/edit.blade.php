@@ -27,7 +27,7 @@
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="firstName">Фамилия Имя Отчество</label>
-                                    <input type="text" name="fio" class="form-control" id="firstName" placeholder="Введите вваше ФИО" value=""
+                                    <input type="text" name="fio" class="form-control" id="firstName" placeholder="Введите ваше ФИО" value="{{ DB::table('students')->where('userId', Auth::user()->id)->value('studentName') }}"
                                            required="" >
                                     <div class="invalid-feedback">
                                         Valid first name is required.
@@ -35,8 +35,12 @@
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="lastName">Вид обучения</label>
-                                    <input type="text" name="vidob" class="form-control" id="lastName" placeholder="Бюджет/Комерция" value=""
-                                           required="" >
+                                    <!-- <input type="text" name="vidob" class="form-control" id="lastName" placeholder="Бюджет/Комерция" value=""
+                                           required="" > -->
+                                    <select class="form-control"  id="type" name="vidob">
+                                      <option value="Бюджет">Бюджет</option>
+                                      <option value="Комерция">Комерция</option>
+                                    </select>
                                     <div class="invalid-feedback">
                                         Valid last name is required.
                                     </div>
@@ -46,29 +50,39 @@
 
                             <div class="mb-3">
                                 <label for="address">Учебное заведение</label>
-                                <input type="text" name="uche" class="form-control" id="address"
-                                       placeholder="Название учебного заведения" required="" >
-                                <div class="invalid-feedback">
-                                    Please enter your shipping address.
-                                </div>
+                                <!-- <input type="text" name="uche" class="form-control" id="address"
+                                       placeholder="Название учебного заведения" required="" value=""> -->
+                                       <select class="form-control @error('roleId') is-invalid @enderror"  id="type" name="uche">
+                                           @foreach($study as $s => $key)
+                                            <option value="{{ $s+1 }}">{{ $key->educationName }}</option>
+                                           @endforeach
+                                       </select>
                             </div>
 
                             <div class="mb-3">
-                                <label for="address">Достижения</label>
-                                <input type="text" name="dost" class="form-control" id="address" placeholder="Ваши достижения"
-                                       required="" >
-                                <div class="invalid-feedback">
-                                    Please enter your shipping address.
-                                </div>
+                                <label for="address">Специальность</label>
+                                <!-- <input type="text" name="diplom" class="form-control" id="address" placeholder="Красный/Синий"
+                                required="" > -->
+                                <select class="form-control @error('roleId') is-invalid @enderror"  id="type" name="speciality">
+                                @foreach(DB::table('specialties')->pluck('specialtiName') as $s => $key)
+                                    <option value="{{ $s+1 }}">{{ $s+1 }} | {{ $key }}</option>
+                                @endforeach
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                              <label for="address">Достижения</label>
+                              <textarea type="text" name="dost" class="form-control" id="address" rows="4" placeholder="Ваши достижения" required="">{{ DB::table('students')->where('userId', Auth::user()->id)->value('progress') }}</textarea>
                             </div>
 
                             <div class="mb-3">
                                 <label for="address">Диплом</label>
-                                <input type="text" name="diplom" class="form-control" id="address" placeholder="Красный/Синий"
-                                       required="" >
-                                <div class="invalid-feedback">
-                                    Please enter your shipping address.
-                                </div>
+                                <!-- <input type="text" name="diplom" class="form-control" id="address" placeholder="Красный/Синий"
+                                required="" > -->
+                                <select class="form-control @error('roleId') is-invalid @enderror"  id="type" name="diplom">
+                                  <option value="Красный">Красный</option>
+                                  <option value="Синий">Синий</option>
+                                </select>
                             </div>
 
                             <div class="mb-3">
@@ -82,11 +96,7 @@
 
                             <div class="mb-3">
                                 <label for="address">Портфолио</label>
-                                <input type="text" name="partfolo" class="form-control " id="address" placeholder="Ваше портфолио"
-                                       required="" >
-                                <div class="invalid-feedback">
-                                    Please enter your shipping address.
-                                </div>
+                                <textarea type="text" name="partfolo" class="form-control" id="address" rows="4" placeholder="Ваше портфолио" required="">{{ DB::table('students')->where('userId', Auth::user()->id)->value('portfolio') }}</textarea>
                             </div>
 
                             <hr class="mb-4">

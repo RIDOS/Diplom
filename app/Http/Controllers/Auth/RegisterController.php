@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Role;
+use App\students;
+use App\organization;
+use App\educationalInstitution;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -74,6 +77,36 @@ class RegisterController extends Controller
 //        $role = Role::select('id')->where('id', )->first();
 
         $user->roles()->attach($data['roleId']);
+
+        if($data['roleId'] == 3) {
+          students::insert([
+            'userId'         => User::max('id'),
+            'studentName'    => '',
+            'typeOfLearning' => '',
+            'progress'       => '',
+            'diplom'         => '',
+            'portfolio'      => '',
+            'yearGraduation' => date('Y-m-d')
+          ]);
+        }
+        else if ($data['roleId'] == 2) {
+          educationalInstitution::insert([
+            'userId'            => User::max('id'),
+            'educationName'     => '',
+            'educationLocation' => ''
+          ]);
+        }
+        else if ($data['roleId'] == 4) {
+          organization::insert([
+            'userId'         => User::max('id'),
+            'name'           => '',
+            'address'        => '',
+            'phone'          => '',
+            'web-site'       => '',
+            'specialty'      => ''
+          ]);
+        }
+
         return $user;
     }
 }

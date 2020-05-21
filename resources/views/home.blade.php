@@ -65,26 +65,33 @@
                             <div class="mb-3">
                                 <label for="address">Учебное заведение</label>
                                 <input type="text" class="form-control" id="address"
-                                       placeholder="Название учебного заведения" required="" value="" disabled>
+                                       placeholder="Название учебного заведения" required="" value="{{ DB::table('educational_institutions')->where('id', DB::table('sharedentries')->where('stud_Id', Auth::user()->id)->value('edu_Id'))->value('educationName') }}" disabled>
                                 <div class="invalid-feedback">
                                     Please enter your shipping address.
                                 </div>
                             </div>
 
                             <div class="mb-3">
+                                <label for="address">Специальность</label>
+                                <!-- <input type="text" name="diplom" class="form-control" id="address" placeholder="Красный/Синий"
+                                required="" > -->
+                                <input type="text" class="form-control" id="address" placeholder="Специальность"
+                                       required="" value="{{ DB::table('specialties')->where('id', DB::table('sharedentries')->where('stud_Id', Auth::user()->id)->value('special_Id'))->value('specialtiName') }}" disabled>
+                            </div>
+
+                            <div class="mb-3">
                                 <label for="address">Достижения</label>
-                                <input type="text" class="form-control" id="address" placeholder="Ваши достижения"
+                                <!-- <input type="text" class="form-control" id="address" placeholder="Ваши достижения"
                                        required="" disabled
-                                       value="{{ DB::table('students')->where('userId', Auth::user()->id)->value('progress') }}">
-                                <div class="invalid-feedback">
-                                    Please enter your shipping address.
-                                </div>
+                                       value="{{ DB::table('students')->where('userId', Auth::user()->id)->value('progress') }}"> -->
+                                <textarea type="text" name="dost" class="form-control" id="address" rows="4" placeholder="Ваши достижения" required=""
+                                disabled>{{ DB::table('students')->where('userId', Auth::user()->id)->value('progress') }}</textarea>
                             </div>
 
                             <div class="mb-3">
                                 <label for="address">Диплом</label>
                                 <input type="text" class="form-control" id="address" placeholder="Красный/Синий"
-                                       required="" disabled>
+                                       required="" value="{{ DB::table('students')->where('userId', Auth::user()->id)->value('diplom') }}" disabled>
                                 <div class="invalid-feedback">
                                     Please enter your shipping address.
                                 </div>
@@ -102,12 +109,11 @@
 
                             <div class="mb-3">
                                 <label for="address">Портфолио</label>
-                                <input type="text" class="form-control " id="address" placeholder="Ваше портфолио"
+                                <!-- <input type="text" class="form-control " id="address" placeholder="Ваше портфолио"
                                        required="" disabled
-                                       value="{{ DB::table('students')->where('userId', Auth::user()->id)->value('portfolio') }}">
-                                <div class="invalid-feedback">
-                                    Please enter your shipping address.
-                                </div>
+                                       value="{{ DB::table('students')->where('userId', Auth::user()->id)->value('portfolio') }}"> -->
+                                <textarea type="text" name="partfolo" class="form-control" id="address" rows="4" placeholder="Ваше портфолио"
+                                disabled>{{ DB::table('students')->where('userId', Auth::user()->id)->value('portfolio') }}</textarea>
                             </div>
 
                             <hr class="mb-4">

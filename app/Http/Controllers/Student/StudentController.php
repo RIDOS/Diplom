@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Student;
 use App\Role;
 use App\students;
 use App\User;
+use App\educationalInstitution;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -26,7 +27,7 @@ class StudentController extends Controller
 
     public function edit($id)
     {
-        return view('student.profile.edit');
+        return view('student.profile.edit')->with('study', educationalInstitution::all('educationName'));
     }
 
     /**
@@ -38,28 +39,37 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $fio = $request->input('fio');
-        $vidob = $request->input('vidob');
-        $email = $request->input('email');
-        $uche = $request->input('uche');
-        $dost = $request->input('dost');
-        $diplom = $request->input('diplom');
-        $date = $request->input('date');
-        $date = date('Y-m-d');
-        $partfolo = $request->input('partfolo');
+      // Запись в поля таблицы студенты.
+        $stud = students::find($id);
 
-//       (". $id .",".$fio.",".$vidob.",".$email.",".$uche.",".$dost.",".$diplom.",".$date.",".$partfolo.")");
-//        DB::insert("INSERT INTO `students` (`userId`, `studentName`, `typeOfLearning`, `progress`, `img`, `portfolio`, `yearGraduation`, `created_at`, `updated_at`) VALUES (". mysqli_real_escape_string($id) .",".mysqli_real_escape_string($fio).",".mysqli_real_escape_string($vidob).",".mysqli_real_escape_string($email).",".mysqli_real_escape_string($uche).",".mysqli_real_escape_string($dost).",".mysqli_real_escape_string($diplom).",".mysqli_real_escape_string($date).",".mysqli_real_escape_string($partfolo).")");
-        students::insert(array(
-            'id'=>DB::table('students')->increment('id'),
-            'userId'=>$id,
-            'studentName'=>$fio,
-            'typeOfLearning'=>$vidob,
-            'progress'=>$dost,
-            'img'=>'',
-            'portfolio'=>$partfolo,
-            'yearGraduation'=> date("m.d.y")
-        ));
+        $stud->id = Auth::user()->id;
+        $stud->userId = Auth::user()->id;
+        $stud->studentName = $request->input('fio');
+        $stud->typeOfLearning = $request->input('vidob');
+        // $stud->progress = $request->input('uche');
+        $stud->progress = $request->input('dost');
+        $stud->diplom = $request->input('diplom');
+        $stud->yearGraduation = date('Y-m-d');
+        $stud->portfolio = $request->input('partfolo');
+
+        $stud->save();
+
+        // Запись в поля таблицы студенты.
+        DB::table('sharedentries')->insert([
+          'stud_Id'     => Auth::user()->id,
+          'edu_Id'      => $request->input('uche'),
+          'special_Id'  => $request->input('speciality'),
+        ]);
+
+        // DB::table('sharedentries')->update([
+        //   'stud_Id'     => Auth::user()->id,
+        //   'edu_Id'      => $request->input('uche'),
+        //   'special_Id'  => $request->input('speciality'),
+        // ]);
+
+
+
+
 
         return redirect()->route('student.profile.index')->with('success', 'Данные были обнавленны.');
     }
