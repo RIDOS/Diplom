@@ -20,8 +20,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-       // dd();
-      return view('study.students.index')->with('st', students::paginate(10))     ;
+      return view('study.students.index')->with('st', students::paginate(10));
     }
 
     /**
@@ -53,7 +52,8 @@ class StudentController extends Controller
       // $stud->progress = $request->input('uche');
       $stud->progress = $request->input('dost');
       $stud->diplom = $request->input('diplom');
-      $stud->yearGraduation = date('Y-m-d');
+
+      $stud->yearGraduation = $request->input('date');
       $stud->portfolio = $request->input('partfolo');
 
       $stud->save();
@@ -66,5 +66,6 @@ class StudentController extends Controller
       ]);
 
       return redirect()->route('study.students.index')->with('success', 'Данные были обнавленны.');
+
     }
 }

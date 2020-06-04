@@ -39,17 +39,19 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id)
     {
-      // Запись в поля таблицы студенты.
-        $stud = students::find($id);
+        // dd(DB::table('students')->where('userId', $id)->value('id'));
+        // Запись в поля таблицы студенты.
+        $stud = students::find(DB::table('students')->where('userId', $id)->value('id'));
 
-        $stud->id = Auth::user()->id;
-        $stud->userId = Auth::user()->id;
+        $stud->id = DB::table('students')->where('userId', $id)->value('id');
+        $stud->userId = $id;
         $stud->studentName = $request->input('fio');
         $stud->typeOfLearning = $request->input('vidob');
         // $stud->progress = $request->input('uche');
         $stud->progress = $request->input('dost');
         $stud->diplom = $request->input('diplom');
-        $stud->yearGraduation = date('Y-m-d');
+        $stud->yearStart = $request->input('dates');
+        $stud->yearGraduation = $request->input('date');
         $stud->portfolio = $request->input('partfolo');
 
         $stud->save();

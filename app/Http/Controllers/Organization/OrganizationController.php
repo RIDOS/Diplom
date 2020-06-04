@@ -22,6 +22,7 @@ class OrganizationController extends Controller
     public function edit($id)
     {
         return view('organization.profile.edit');
+
     }
 
     /**
@@ -33,23 +34,19 @@ class OrganizationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $name = $request->input('name');
-        $address = $request->input('address');
-        $number = $request->input('number');
-        $web = $request->input('web');
-        $spec = $request->input('spec');
+      $org = organization::find(DB::table('organizations')->where('userId', $id)->value('id'));
 
-        organization::insert(array(
-            'id'=>"1",
-            'userId'=>$id,
-            'name'=>$name,
-            'address'=>$address,
-            'web-site'=>$web,
-            'phone'=>$number,
-            'img'=>"",
-            'specialty'=>$spec
-        ));
-        return redirect()->route('organization.profile.index')->with('success', 'Данные были обнавленны.');
+      $org->id = DB::table('organizations')->where('userId', $id)->value('id');
+      $org->userId = $id;
+      $org->name = $request->input('name');
+      $org->address = $request->input('address');
+      $org->web_site = $request->input('web');
+      $org->phone = $request->input('number');
+      $org->specialty = $request->input('spec');
+
+      $org->save();
+
+      return redirect()->route('organization.profile.index')->with('success', 'Данные были обнавленны.');
     }
 
     /**

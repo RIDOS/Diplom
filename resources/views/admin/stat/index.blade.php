@@ -11,9 +11,7 @@
                 <div class="card">
                     <div class="card-header">Статистика сайта</div>
                     <div class="card-body">
-                        <p>Всего зарегестированно пользователей: 35</p>
-                        <p>Пользователи онлайн: 1</p>
-                    </div>
+                        <p>Всего зарегестированно пользователей: {{ DB::table('users')->count('name')}}</p>
                 </div>
             </div>
         </div>

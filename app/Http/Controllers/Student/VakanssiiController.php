@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Student;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Vakansii;
 
 class VakanssiiController extends Controller
 {
@@ -14,7 +15,7 @@ class VakanssiiController extends Controller
      */
     public function index()
     {
-        return view('student.vakansii.index');
+        return view('student.vakansii.index')->with('vakansii', Vakansii::paginate(3));
     }
 
     public function edit($id)

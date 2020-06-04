@@ -23,7 +23,7 @@
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label for="id">Название учебного заведения</label>
-                                    <input type="text" name="name" class="form-control" id="iduser" placeholder="Учебное заведение" value="">
+                                    <input type="text" name="educationName" class="form-control" id="iduser" placeholder="Учебное заведение" value="">
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="lastName">Место расположение</label>

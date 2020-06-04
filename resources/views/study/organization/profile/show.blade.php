@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\DB;
                         <span>Специализация: {{ $org->specialty}}</span>
                       </div>
                       <div>
-                        <a href="http://{{ DB::table('organizations')->where('id', $org->id)->value('web-site') }}">Web-сайт</a>
+                        <a href="http://{{ DB::table('organizations')->where('id', $org->id)->value('web_site') }}">Web-сайт</a>
                       </div>
                     </div>
                 </div>

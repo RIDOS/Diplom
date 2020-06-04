@@ -21,6 +21,7 @@ class CreateStudentsTable extends Migration
             $table->string('progress', 100);
             $table->string('img');
             $table->string('portfolio',255);
+            $table->date('yearStart');
             $table->date('yearGraduation');
             $table->timestamps();
         });

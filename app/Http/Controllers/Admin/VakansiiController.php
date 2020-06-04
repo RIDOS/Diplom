@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Vakansii;
+
 
 class VakansiiController extends Controller
 {
@@ -14,7 +16,7 @@ class VakansiiController extends Controller
      */
     public function index()
     {
-        return view('admin.vakansii.index');
+        return view('admin.vakansii.index')->with('vakansii', Vakansii::paginate(3));
     }
 
     public function create()
@@ -47,6 +49,8 @@ class VakansiiController extends Controller
      */
     public function destroy($id)
     {
-        //
+       $vakan = Vakansii::find($id);
+       $vakan->delete();
+       return view('admin.vakansii.index')->with('vakansii', Vakansii::all())->with('success', 'Вакансия была создана.');
     }
 }

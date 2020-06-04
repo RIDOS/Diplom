@@ -39,7 +39,7 @@ Route::namespace('Study')->prefix('study')->middleware(['auth', 'auth.study'])->
     ['except' => ['show', 'create', 'store']]);
 
     Route::resource('/student','StudentController',
-    ['except' => ['show', 'create', 'store']]);
+    ['except' => ['create', 'store']]);
 
     Route::resource('/organizations','OrgController',
     ['except' => ['show', 'create', 'store', 'edit', 'destroy', 'update']]);
@@ -72,10 +72,10 @@ Route::namespace('Organization')->prefix('organization')->middleware(['auth', 'a
         ['except' => ['show', 'create', 'store']]);
 
     Route::resource('/students','VipusniknController',
-        ['except' => ['show', 'create', 'store', 'edit', 'update', 'destroy']]);
+        ['except' => [ 'create', 'store', 'edit', 'update', 'destroy']]);
 
     Route::resource('/vakansi','VakansiiController',
-        ['except' => ['show', 'store']]);
+        ['except' => ['show']]);
 });
 
 

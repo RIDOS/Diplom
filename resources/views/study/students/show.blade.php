@@ -23,11 +23,11 @@
                             <div class="row">
                                 <div class="col-md-12 mb-3">
                                     <label for="id">id пользователя</label>
-                                    <input type="text" name="iduser" class="form-control" id="iduser" placeholder="Введите ваше ФИО" value="{{ $result = Auth::user()->id }}" disabled >
+                                    <input type="text" name="iduser" class="form-control" id="iduser" placeholder="Введите ваше ФИО" value="{{  }}" disabled >
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="firstName">Фамилия Имя Отчество</label>
-                                    <input type="text" name="fio" class="form-control" id="firstName" placeholder="Введите ваше ФИО" value="{{ DB::table('students')->where('userId', Auth::user()->id)->value('studentName') }}"
+                                    <input type="text" name="fio" class="form-control" id="firstName" placeholder="Введите ваше ФИО" value="{{  }}"
                                            required="" >
                                     <div class="invalid-feedback">
                                         Valid first name is required.
@@ -86,18 +86,9 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="address">Год начала учебного заведения</label>
-                                <input type="date" name="dateS" class="form-control" id="address" placeholder="День.Месяц.Год"
-                                      value="{{ DB::table('students')->where('userId', Auth::user()->id)->value('yearStart') }}" required="" >
-                                <div class="invalid-feedback">
-                                    Please enter your shipping address.
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
                                 <label for="address">Год оканчания учебного заведения</label>
                                 <input type="date" name="date" class="form-control" id="address" placeholder="День.Месяц.Год"
-                                      value="{{ DB::table('students')->where('userId', Auth::user()->id)->value('yearGraduation') }}" required="" >
+                                      value="{{ yearGraduation }}" required="" >
                                 <div class="invalid-feedback">
                                     Please enter your shipping address.
                                 </div>
@@ -105,7 +96,7 @@
 
                             <div class="mb-3">
                                 <label for="address">Портфолио</label>
-                                <textarea type="text" name="partfolo" class="form-control" id="address" rows="4" placeholder="Ваше портфолио" required="">{{ DB::table('students')->where('userId', Auth::user()->id)->value('portfolio') }}</textarea>
+                                <textarea type="text" name="partfolo" class="form-control" id="address" rows="4" placeholder="Ваше портфолио" required="">{{ , Auth::user()->id)->value('portfolio }}</textarea>
                             </div>
 
                             <hr class="mb-4">

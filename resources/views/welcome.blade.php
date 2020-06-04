@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>ATLAS</title>
+    <title>АТЛАС</title>
 
 
     <!-- Fonts -->
@@ -58,7 +58,7 @@
      style="background-image: url('img/background_atlas.png'); background-repeat: no-repeat; background-size: cover;">
     <img src="{{ asset('img/logo_atlas.png') }}" style="width: 27em; margin-left: 5em" alt="">
     <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-        <h1 class="display-4" style="margin-top: 10%;">ATLAS</h1>
+        <h1 class="display-4" style="margin-top: 10%;">АТЛАС</h1>
         <p class="lead" style="margin-left: 30%; margin-right: 30%;">
             Формирование эффективного и достоверного сетевого взаимодействия между образовательными учреждениями,
             абитуриентами, студентами и их родителями, и предприятиями в сети интернет.

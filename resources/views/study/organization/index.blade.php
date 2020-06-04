@@ -24,8 +24,10 @@ use App\educationalInstitution;
                           <a href="{{ route('study.profile.show', $value->id) }}" class="card-link">Подробнее</a>
                         </div>
                       </div>
+                      <br>
                       <!--  -->
                       @endforeach
+                      {{ $orgs->links() }}
                     </div>
                 </div>
             </div>

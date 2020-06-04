@@ -19,7 +19,7 @@ class CreateOrganizationsTable extends Migration
             $table->string('address');
             $table->string('phone');
             $table->string('email');
-            $table->string('web-site');
+            $table->string('webSite');
             $table->string('specialty');
             $table->string('img');
             $table->timestamps();

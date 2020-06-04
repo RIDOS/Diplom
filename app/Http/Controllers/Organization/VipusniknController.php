@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Organization;
 use App\students;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class VipusniknController extends Controller
 {
@@ -18,8 +19,9 @@ class VipusniknController extends Controller
         return view('organization.students.index')->with('students', students::paginate(10));
     }
 
-    public function edit($id)
+    public function show($id)
     {
+      return view('organization.students.show')->with('id', students::where('id', $id)->get());
     }
 
 }

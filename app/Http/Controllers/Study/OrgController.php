@@ -15,7 +15,7 @@ class OrgController extends Controller
      */
     public function index()
     {
-        return view('study.organization.index')->with('orgs', organization::all());
+        return view('study.organization.index')->with('orgs', organization::paginate(3));
     }
 
 

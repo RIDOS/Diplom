@@ -18,7 +18,7 @@
 
                     <div class="card-body">
                         @if (Auth::user()->hasAnyRole('Администратор'))
-                            <h2>Добро пожаловать в ATLAS!</h2>
+                            <h2>Добро пожаловать в АТЛАС!</h2>
                             <br>
                             <h4>В панеле администратора реализованны функции</h4>
                             <ul>
@@ -98,6 +98,15 @@
                             </div>
 
                             <div class="mb-3">
+                                <label for="address">Год начала учебного заведения</label>
+                                <input type="date" name="dateS" class="form-control" id="address" placeholder="День.Месяц.Год" disabled
+                                      value="{{ DB::table('students')->where('userId', Auth::user()->id)->value('yearStart') }}" required="" >
+                                <div class="invalid-feedback">
+                                    Please enter your shipping address.
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
                                 <label for="address">Год оканчания учебного заведения</label>
                                 <input type="text" class="form-control" id="address" placeholder="День.Месяц.Год"
                                        required="" disabled
@@ -147,7 +156,7 @@
                             </div>
 
                             <hr class="mb-4">
-                            <a href="{{ route('study.profile.edit', Auth::user()->id) }}">
+                            <a href="{{ route('study.profile.edit',  DB::table('educational_institutions')->where('userId', Auth::user()->id)->value('id')) }}">
                                 <button class="btn btn-primary btn-lg btn-block">Редактировать</button>
                             </a>
                         @endif
@@ -200,7 +209,7 @@
                                     <label for="address">Веб сайт</label>
                                     <input type="text" class="form-control" id="address" placeholder="Сайт организации"
                                            required="" disabled
-                                           value="{{ DB::table('organizations')->where('userId', Auth::user()->id)->value('web-site') }}"
+                                           value="{{ DB::table('organizations')->where('userId', Auth::user()->id)->value('web_site') }}"
                                     >
                                     <div class="invalid-feedback">
                                         Please enter your shipping address.

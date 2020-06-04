@@ -86,6 +86,7 @@ class RegisterController extends Controller
             'progress'       => '',
             'diplom'         => '',
             'portfolio'      => '',
+            'yearStart' => date('Y-m-d'),
             'yearGraduation' => date('Y-m-d')
           ]);
         }
@@ -102,7 +103,7 @@ class RegisterController extends Controller
             'name'           => '',
             'address'        => '',
             'phone'          => '',
-            'web-site'       => '',
+            'web_site'       => '',
             'specialty'      => ''
           ]);
         }
