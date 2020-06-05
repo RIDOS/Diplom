@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\organization;
 use App\Vakansii;
 
 
@@ -18,13 +19,20 @@ class VakansiiController extends Controller
      */
     public function index()
     {
-        return view('organization.vakansi.index')->with('vakansii', Vakansii::where('organization_id' , DB::table('organizations')->where('userId' , Auth::user()->id)->value('id'))->get())
-        ->with('vakansii', Vakansii::paginate(3));
+      return view('organization.vakansi.index')->with('vakansii', Vakansii::where('organization_id' , DB::table('organizations')->where('userId' , Auth::user()->id)->value('id'))->get());
     }
 
     public function create(Request $request)
     {
+      $organ = organization::where('userId', Auth::user()->id)->value('name');
+
+      if ($organ == "") {
+          return redirect()->route('organization.vakansi.index')->with('vakansii', Vakansii::where('organization_id' , DB::table('organizations')->where('userId' , Auth::user()->id)->value('id'))->get())
+                ->with('warning', 'Для создания вакансии, необходимо заполнить анкету.');
+      }
+      else {
         return view('organization.vakansi.create');
+      }
     }
 
     public function store(Request $request)
@@ -37,8 +45,8 @@ class VakansiiController extends Controller
 
       $vakan->save();
 
-      return view('organization.vakansi.index')
-      ->with('vakansii', Vakansii::where('organization_id' , DB::table('organizations')->where('userId' , Auth::user()->id)->value('id'))->get())->with('success', 'Вакансия создана.');
+      return redirect()->route('organization.vakansi.index')->with('vakansii', Vakansii::where('organization_id' , DB::table('organizations')->where('userId' , Auth::user()->id)->value('id'))->get())
+      ->with('success', 'Вакансия создана.');
     }
 
     public function edit($id)
@@ -68,8 +76,7 @@ class VakansiiController extends Controller
     {
        $vakan = Vakansii::find($id);
        $vakan->delete();
-       return view('organization.vakansi.index')
-       ->with('vakansii', Vakansii::where('organization_id' , DB::table('organizations')->where('userId' , Auth::user()->id)->value('id'))->get())
-       ->with('success', 'Вакансия была создана.');
+       return redirect()->route('organization.vakansi.index')
+       ->with('vakansii', Vakansii::where('organization_id' , DB::table('organizations')->where('userId' , Auth::user()->id)->value('id'))->get())->with('success', 'Вакансия была удалена.');
     }
 }

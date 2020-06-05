@@ -40,7 +40,7 @@
         <div class="card" style="width: 65rem; margin: 1em">
           <div class="card-body">
             <h5 class="card-title">{{ $value->title }}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Организация: {{ DB::table('organizations')->where('userId', Auth::user()->id)->value('name') }}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">Организация: {{ DB::table('organizations')->where('userId', $value->id)->value('name') }}</h6>
             <h6 class="card-subtitle mb-2 text-muted">Заработная плата: {{ $value->cost }} руб.</h6>
             <p class="card-text">Описание: {{ $value->description }}</p>
             <a href="#" class="card-link">
@@ -58,7 +58,7 @@
         <div class="card" style="width: 65rem; margin: 1em">
           <div class="card-body">
             <h5 class="card-title">{{ $value->title }}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Организация: {{ DB::table('organizations')->where('userId', Auth::user()->id)->value('name') }}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">Организация: {{ DB::table('organizations')->where('userId', $value->id)->value('name') }}</h6>
             <h6 class="card-subtitle mb-2 text-muted">Заработная плата: {{ $value->cost }} руб.</h6>
             <p class="card-text">Описание: {{ $value->description }}</p>
             <a href="#" class="card-link">

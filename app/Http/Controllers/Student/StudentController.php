@@ -50,7 +50,7 @@ class StudentController extends Controller
         // $stud->progress = $request->input('uche');
         $stud->progress = $request->input('dost');
         $stud->diplom = $request->input('diplom');
-        $stud->yearStart = $request->input('dates');
+        $stud->yearStart = $request->input('dateS');
         $stud->yearGraduation = $request->input('date');
         $stud->portfolio = $request->input('partfolo');
 

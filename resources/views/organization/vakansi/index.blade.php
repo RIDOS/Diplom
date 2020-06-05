@@ -40,11 +40,10 @@ use Illuminate\Support\Facades\DB;
           </div>
           @endforeach
 
-          @if ($vakansii == null)
-          <h2>Список пуст</h2>
+          @if (count($vakansii) == 0)
+          <h3>-- Список пуст --</h3>
           @endif
 
-          {{ $vakansii->links() }}
       </div>
     </div>
   </div>

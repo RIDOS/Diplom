@@ -1,6 +1,7 @@
 @extends('layouts.app')
 <?php
 use App\educationalInstitution;
+use App\students;
 ?>
 
 @section('sidebar')
@@ -19,14 +20,17 @@ use App\educationalInstitution;
                           <thead>
                           <tr>
                               <th scope="col">ФИО</th>
-                              <th scope="col">Курс</th>
+                              <th scope="col">Дата поступление</th>
+                              <th scope="col">Дата окончания</th>
                               <th scope="col">Редактировать</th>
                           </tr>
                           </thead>
                           <tbody>
                           @foreach($st as $user)
+                          
                                   <tr>
                                       <th>{{ $user->studentName }}</th>
+                                      <th>{{ date($user->yearStart) }}</th>
                                       <th>{{ date($user->yearGraduation) }}</th>
                                       <th>
                                         <a href="{{ route('study.student.edit', $user->id) }}" class="float-left">

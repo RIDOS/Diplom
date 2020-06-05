@@ -10,6 +10,7 @@ use App\educationalInstitution;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class StudentController extends Controller
 {
@@ -20,7 +21,10 @@ class StudentController extends Controller
      */
     public function index()
     {
+      //DB::table('sharedentries')->where('edu_id', educationalInstitution::where('userId', Auth::user()->id)->value('id'))->get()
+      // dd();
       return view('study.students.index')->with('st', students::paginate(10));
+      // ->with('st', students::where('id', students::where('id', DB::table('sharedentries')->where('edu_id', educationalInstitution::where('userId', Auth::user()->id)->value('id'))->get('stud_Id'))->get()));
     }
 
     /**

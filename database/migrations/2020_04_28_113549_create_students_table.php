@@ -18,9 +18,8 @@ class CreateStudentsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->string('studentName', 4);
             $table->string('typeOfLearning',4);
-            $table->string('progress', 100);
-            $table->string('img');
-            $table->string('portfolio',255);
+            $table->string('progress', 16000);
+            $table->string('portfolio',25000);
             $table->date('yearStart');
             $table->date('yearGraduation');
             $table->timestamps();

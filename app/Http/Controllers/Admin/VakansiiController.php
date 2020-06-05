@@ -49,8 +49,9 @@ class VakansiiController extends Controller
      */
     public function destroy($id)
     {
+      // dd($id);
        $vakan = Vakansii::find($id);
        $vakan->delete();
-       return view('admin.vakansii.index')->with('vakansii', Vakansii::all())->with('success', 'Вакансия была создана.');
+       return view('admin.vakansii.index')->with('vakansii', Vakansii::paginate(3));
     }
 }
